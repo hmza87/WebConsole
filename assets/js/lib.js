@@ -1,4 +1,5 @@
 var pick=true;
+var hzConsole, c = $('#console-body input');
 (function($){
     var c = $('#console-body input');
     var mouseIn=false, c_x, c_y;
@@ -58,7 +59,7 @@ function selectElemnt(dis){
      $('.hzc-selected').removeClass('hzc-selected');
      
 
-     console.log(dis.localName);
+     c.val($(dis).getPath());
 
      
          dis.addClass('hzc-selected')
@@ -77,6 +78,3 @@ function handleEclick( event ) {
             
 }
 
-jQuery.fn.getSelector = function() {
-        return this.data('selector');
-};
