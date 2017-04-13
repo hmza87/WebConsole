@@ -1,5 +1,17 @@
-var pick=true;
-var hzConsole, c = $('#console-body input');
+var pick=false
+    ,hzConsole
+    ,c = $('#console-body input')
+    ,KEYS = {
+        X       : 87,
+        CTRL    : 17,
+        SHIFT   : 16,
+        ALT     : 18
+
+    }
+    ,PARAMS = {
+        border_width    : 1
+    };
+
 (function($){
     var c = $('#console-body input');
     var mouseIn=false, c_x, c_y;
@@ -32,6 +44,7 @@ jQuery(document).ready(function($){
                     });
     $('.cph').attr('data-nopicker', '');
 
+
     
     $(document).mousemove(function(e){
         if(pick && !$(e.target).is('[data-nopicker]')){
@@ -43,13 +56,21 @@ jQuery(document).ready(function($){
             
 
         }
-    $('#overlay').on('mousemove', function(){
-        console.log('ok');
-        $(this).hide();
-    });
+        $('#overlay').on('mousemove', function(){
+            console.log('ok');
+            $(this).hide();
+        });
     }).mouseleave(function(e){
         //$(e.target).removeClass('hzc-selected');
-    }); 
+    })
+    .keydown(function(e){
+        if(e.shiftKey && e.ctrlKey && e.keyCode==88) pick =!pick;
+
+    })
+    .keyup(function(e){
+        
+        console.log(pick);
+    });
     $('*').mouseenter(function(){
         if(pick){
             //$(this).css('margin', parseInt($(this).css('margin')-1))
@@ -89,25 +110,25 @@ function selectElemnt(dis){
          top        :dis.position().top-1,
          left       :dis.position().left+parseInt(dis.css('margin-left')),
          width      :dis.outerWidth()+parseInt(dis.css('margin-left'))+parseInt(dis.css('margin-right')),
-         height     :2
+         height     :PARAMS.border_width
         });
      $('.cph-r').css({
          top        :dis.position().top-1,
          left       :dis.position().left+dis.outerWidth(),
          height     :dis.outerHeight()+parseInt(dis.css('margin-top'))+parseInt(dis.css('margin-bottom')),
-         width      :2
+         width      :PARAMS.border_width
         });
      $('.cph-b').css({
          top        :dis.position().top+dis.outerHeight()+parseInt(dis.css('margin-top'))+parseInt(dis.css('margin-bottom')),
          left       :dis.position().left,
          width      :dis.outerWidth()+parseInt(dis.css('margin-left'))+parseInt(dis.css('margin-right')),
-         height     :2
+         height     :PARAMS.border_width
         });
     $('.cph-l').css({
          top        :dis.position().top-1,
          left       :dis.position().left-1,
          height     :dis.outerHeight()+parseInt(dis.css('margin-top'))+parseInt(dis.css('margin-bottom')),
-         width      :2
+         width      :PARAMS.border_width
         });
     
 

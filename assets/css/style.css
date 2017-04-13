@@ -70,7 +70,7 @@
 }
 .cph{
     position: absolute;
-    background: url(https://b.zmtcdn.com/images/floading.gif);
+    background-color: red;
 }
 .cph-t{
     height: 5px;
